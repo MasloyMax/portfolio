@@ -1,0 +1,16 @@
+﻿.hero-art { position: relative; align-self: center; width: 100%; max-width: 440px; margin-left: auto; padding-block: 18px; perspective: 900px; animation: text-enter 1.4s .15s var(--ease) both; }
+.sculpture-perspective { transform: rotateY(var(--art-x, 0deg)) rotateX(var(--art-y, 0deg)); transition: transform .65s var(--ease); }
+.sculpture { width: 100%; height: auto; overflow: visible; }
+.art-grid { opacity: .22; }
+.art-coordinate { position: absolute; top: 0; right: 6%; left: 6%; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-family: 'Courier New', monospace; font-size: 7px; letter-spacing: .07em; }
+.art-coordinate > span:last-child { font-size: 11px; }
+.art-coordinate-bottom { top: auto; bottom: 0; }
+.art-coordinate-bottom > span:last-child { font-size: 8px; }
+.star-float { animation: star-float 7s ease-in-out infinite; }
+.orbit-track { opacity: .6; transform-origin: 220px 194px; animation: orbit-spin 34s linear infinite; }
+.star-outline { stroke-dasharray: 15 85; animation: edge-trace 9s linear infinite; opacity: .7; }
+.sculpture-shadow { transform-origin: 226px 343px; animation: shadow-breathe 7s ease-in-out infinite; }
+@keyframes star-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-11px); } }
+@keyframes orbit-spin { to { transform: rotate(360deg); } }
+@keyframes edge-trace { to { stroke-dashoffset: -100; } }
+@keyframes shadow-breathe { 0%, 100% { opacity: 1; transform: scaleX(1); } 50% { opacity: .6; transform: scaleX(.8); } }

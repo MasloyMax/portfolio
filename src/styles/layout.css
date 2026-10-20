@@ -1,0 +1,14 @@
+﻿.site-header { position: sticky; top: 0; z-index: 20; background: var(--background); }
+.header-inner { display: flex; align-items: center; min-height: 79px; gap: 30px; border-bottom: 1px solid var(--line); }
+.wordmark { display: inline-flex; align-items: center; gap: 11px; min-height: 44px; font-size: 10px; font-weight: 750; letter-spacing: .09em; }
+.wordmark svg { width: 23px; height: 23px; transition: transform .7s var(--ease); }
+.wordmark:hover svg { transform: rotate(180deg); }
+.navigation { display: flex; align-items: center; gap: 30px; margin-left: auto; }
+.navigation a { position: relative; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 11px; }
+.navigation a::after { position: absolute; right: 0; bottom: 7px; left: 0; height: 1px; background: currentColor; content: ''; transform: scaleX(0); transform-origin: right; transition: transform .35s var(--ease); }
+.navigation a:hover::after, .navigation a[aria-current]::after { transform: scaleX(1); transform-origin: left; }
+.theme-button { width: 34px; height: 34px; }
+.site-footer { display: flex; justify-content: space-between; align-items: center; min-height: 71px; color: var(--muted); font-size: 10px; }
+.back-to-top { display: flex; align-items: center; gap: 9px; min-height: 44px; }
+.back-to-top svg { transition: transform .3s var(--ease); }
+.back-to-top:hover svg { transform: translateY(-4px); }
