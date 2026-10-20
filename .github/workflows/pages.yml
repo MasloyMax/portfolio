@@ -1,7 +1,8 @@
 name: Deploy to GitHub Pages
 
-# Запускается вручную после включения Pages в настройках репозитория.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
