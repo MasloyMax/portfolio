@@ -33,33 +33,4 @@ npm run test:ui:report
 
 GitHub Actions автоматически выполняет сборку и тесты при push в `main` и в pull request. HTML-отчёт Playwright сохраняется в артефактах запуска на 7 дней.
 
-## Бесплатный хостинг
-
-### GitHub Pages
-
-На GitHub Free требуется публичный репозиторий. Видимость можно изменить в Settings → General → Change repository visibility.
-
-1. В Settings → Pages выбрать Source: **GitHub Actions**.
-2. Открыть Actions → **Deploy to GitHub Pages** → **Run workflow**, ветка `main`.
-3. Дождаться завершения. Ссылка появится в Environment `github-pages` и Settings → Pages.
-4. После следующих изменений запускать этот workflow повторно.
-
-Workflow уже находится в `.github/workflows/pages.yml`. Он запускается только вручную, поэтому загрузка исходников на GitHub сама по себе не публикует сайт. Относительная база Vite `./` позволяет раздавать сборку из подпапки репозитория.
-
-Документация: [Creating a GitHub Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site), [Custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
-
-### Cloudflare Pages
-
-Подходит, если исходники нужно оставить в приватном репозитории.
-
-1. Подключить GitHub-репозиторий к Cloudflare Pages через Git integration.
-2. Выбрать production branch `main`.
-3. Указать build command `npm run build` и output directory `dist`.
-4. При необходимости указать переменную сборки `NODE_VERSION=24`.
-5. Нажать Deploy. Cloudflare выдаст адрес на `pages.dev` и будет обновлять сайт после push в `main`.
-
-Документация: [Git integration](https://developers.cloudflare.com/pages/configuration/git-integration/), [Build configuration](https://developers.cloudflare.com/pages/configuration/build-configuration/), [Free-plan limits](https://developers.cloudflare.com/pages/platform/limits/).
-
-Для аудитории в России стоит учитывать доступность: 26 июня 2025 года Cloudflare [сообщил об ограничении своего трафика российскими провайдерами](https://blog.cloudflare.com/russian-internet-users-are-unable-to-access-the-open-internet/). Перед выбором этого хостинга проверьте доступ к опубликованному сайту из нужных сетей.
-
 `node_modules`, `dist`, локальные инструменты в `.qa`, `.env` и отчёты тестов исключены из Git. Исходный PDF резюме не включён в проект.
