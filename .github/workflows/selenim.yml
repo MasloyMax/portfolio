@@ -1,0 +1,81 @@
+name: Java UI tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: selenim-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+          cache-dependency-path: selenim/pom.xml
+      - name: Install website dependencies
+        run: npm ci
+      - name: Build current website
+        run: npm run build
+      - name: Run Java UI tests against local build
+        shell: bash
+        run: |
+          set -euo pipefail
+          google-chrome --version
+          mkdir -p selenim/target
+          preview_log="$PWD/selenim/target/preview.log"
+          setsid npm run preview -- --port 4177 --strictPort >"$preview_log" 2>&1 &
+          preview_pid=$!
+          cleanup() {
+            kill -- "-$preview_pid" 2>/dev/null || true
+            wait "$preview_pid" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          ready=false
+          for attempt in {1..30}; do
+            if ! kill -0 "$preview_pid" 2>/dev/null; then
+              cat "$preview_log"
+              exit 1
+            fi
+            if curl --fail --silent --max-time 2 http://127.0.0.1:4177/ > /dev/null; then
+              ready=true
+              break
+            fi
+            sleep 1
+          done
+          if [ "$ready" != true ]; then
+            cat "$preview_log"
+            echo "Website did not become ready on port 4177" >&2
+            exit 1
+          fi
+
+          cd selenim
+          sh ./mvnw -B --no-transfer-progress test
+      - name: Save Java test reports and browser diagnostics
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: selenim-report
+          path: |
+            selenim/target/surefire-reports/
+            selenim/target/selenide/
+            selenim/target/preview.log
+          retention-days: 7
+          if-no-files-found: ignore
