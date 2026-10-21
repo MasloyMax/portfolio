@@ -1,4 +1,4 @@
-﻿import { useId, useState } from 'react'
+import { useId, useState } from 'react'
 import { Plus } from 'lucide-react'
 import { profile } from '../../profile'
 import type { Experience } from '../../types/portfolio'
@@ -34,7 +34,7 @@ export function ExperienceSection() {
   return (
     <section className="experience-section container reveal" id="experience" aria-labelledby="experience-title">
       <div className="section-intro">
-        <div className="eyebrow section-label">01 / ПРАКТИКА</div>
+        <div className="eyebrow section-label">02 / ПРАКТИКА</div>
         <h2 id="experience-title">Опыт<span className="muted">.</span></h2>
         <p>{profile.about[0]}</p>
         <span className="experience-range">2021 — СЕЙЧАС</span>

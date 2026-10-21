@@ -1,6 +1,6 @@
-﻿import { ArrowDown, ArrowUpRight } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Plus } from 'lucide-react'
 import { profile } from '../../profile'
-import { HeroArtwork } from '../artwork/HeroArtwork'
+import { MyLive } from '../live/MyLive'
 
 export function HeroSection() {
   return (
@@ -9,8 +9,11 @@ export function HeroSection() {
         <div className="hero-copy">
           <p className="eyebrow hero-eyebrow"><span className="status-dot" />{profile.role}</p>
           <h1 id="hero-title" aria-label={profile.name}>
-            <span className="name-line"><span>Максим</span></span>
-            <span className="name-line"><span>Маслов<span className="name-period">.</span></span></span>
+            {profile.headline.filter(Boolean).map(line => (
+              <span className="name-line" key={line}>
+                <span>{line.endsWith('.') ? <>{line.slice(0, -1)}<span className="name-period">.</span></> : line}</span>
+              </span>
+            ))}
           </h1>
           <p className="hero-description">{profile.introduction}</p>
           <div className="hero-buttons">
@@ -18,17 +21,23 @@ export function HeroSection() {
             <a href="#experience" className="text-link">Мой опыт<ArrowDown size={15} /></a>
           </div>
         </div>
-        <HeroArtwork />
-      </div>
-      <div className="hero-caption">
-        <span>{profile.location}</span>
-        <span>В тестировании с 2021 года</span>
-        <span className="caption-note">ВНИМАНИЕ К ДЕТАЛЯМ — В ПРИВЫЧКЕ</span>
+        <MyLive />
       </div>
       <div className="stack-line" aria-label="Основные технологии">
         <span className="stack-label">СТЕК</span>
-        <ul>{profile.skills.map(skill => <li key={skill.name}>{skill.name}</li>)}</ul>
+        <ul aria-label="Технологии">{profile.skills.map(skill => <li key={skill.name}>{skill.name}</li>)}</ul>
       </div>
+      <details className="stack-details">
+        <summary>Как использую стек<Plus size={14} aria-hidden="true" /></summary>
+        <dl>
+          {profile.skills.map(skill => (
+            <div key={skill.name}>
+              <dt>{skill.name}</dt>
+              <dd>{skill.detail}</dd>
+            </div>
+          ))}
+        </dl>
+      </details>
     </section>
   )
 }

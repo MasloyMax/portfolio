@@ -11,7 +11,7 @@ export function ContactSection() {
     <section className="contact-section container reveal" id="contact" aria-labelledby="contact-title">
       <div className="contact-main">
         <div>
-          <div className="eyebrow section-label">02 / КОНТАКТ</div>
+          <div className="eyebrow section-label">03 / КОНТАКТ</div>
           <h2 id="contact-title">Будем на связи<span className="muted">.</span></h2>
           <p>Обсудим автоматизацию, ваш продукт или сложную задачу.</p>
         </div>

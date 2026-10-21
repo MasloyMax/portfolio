@@ -42,6 +42,9 @@ export const profile: PortfolioProfile = {
       highlights: [
         'Поддержка и развивитие проекта автотестов. Проверка REST- и gRPC API, работа с GitLab CI/CD.',
         'Анализ логи и метрик в OpenSearch, OpenLens и Grafana. Работаю с PostgreSQL и Redis, решаю небольшие задачи на backend и frontend.',
+        'Архитектурно проапгрейдил тестовый проект.',
+        'Автоматизировал функционал ролевой модели',
+        'Учавствовал во внедрении shift-left'
       ],
     },
     {
@@ -81,7 +84,7 @@ export const profile: PortfolioProfile = {
   ],
   languages: ['Русский — родной', 'Английский — B1'],
   contacts: {
-    email: 'gafi-gaf@mail.ru',
+    email: 'masloymax@gmail.com',
     telegram: 'https://t.me/masloymax',
   },
 }

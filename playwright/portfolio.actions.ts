@@ -19,6 +19,14 @@ export class PortfolioActions {
     await (from === 'header' ? this.ui.experienceLink : this.ui.heroExperienceLink).click()
   }
 
+  async goToAbout() {
+    await this.ui.aboutLink.click()
+  }
+
+  async toggleSkillDetails() {
+    await this.ui.skillsToggle.click()
+  }
+
   async goToContacts() {
     await this.ui.contactLink.click()
   }
@@ -65,16 +73,6 @@ export class PortfolioActions {
 
   async preferReducedMotion() {
     await this.page.emulateMedia({ reducedMotion: 'reduce' })
-  }
-
-  async hoverArtwork() {
-    const size = await this.ui.artwork.boundingBox()
-    if (!size) throw new Error('Графика на первом экране не найдена')
-    await this.ui.artwork.hover({ position: { x: size.width * 0.8, y: size.height * 0.35 } })
-  }
-
-  async leaveArtwork() {
-    await this.ui.logo.hover()
   }
 
   async focusSkipLink() {

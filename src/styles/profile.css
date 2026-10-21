@@ -1,0 +1,27 @@
+.profile-overview { min-width: 0; padding-left: 36px; border-left: 1px solid var(--line); animation: text-enter .9s .2s var(--ease) both; }
+.profile-intro h2 { margin-top: 10px; font-size: 31px; }
+.profile-intro > p { max-width: 390px; margin-top: 13px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+.profile-intro .profile-availability { color: var(--text); }
+.profile-facts { display: grid; grid-template-columns: 1.2fr 1fr 1.1fr; gap: 14px; margin: 23px 0 0; padding: 0 0 21px; border-bottom: 1px solid var(--line); }
+.profile-facts dt { color: var(--muted); font-size: 10px; }
+.profile-facts dd { margin: 5px 0 0; font-size: 12px; font-weight: 600; overflow-wrap: anywhere; }
+.profile-education { padding-block: 20px; border-bottom: 1px solid var(--line); }
+.profile-overview h3 { font-size: 11px; font-weight: 600; letter-spacing: .02em; }
+.profile-education ol { display: grid; gap: 19px; margin: 17px 0 0; padding: 0; list-style: none; }
+.profile-education li { display: grid; grid-template-columns: 35px minmax(0, 1fr); gap: 16px; }
+.education-year { padding-top: 2px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 11px; }
+.profile-education h4 { margin: 0; font-size: 14px; font-weight: 550; line-height: 1.4; }
+.profile-education p { max-width: 320px; margin-top: 5px; color: var(--muted); font-size: 11px; line-height: 1.65; }
+.profile-languages { padding-top: 19px; }
+.profile-languages ul { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 12px 0 0; padding: 0; list-style: none; }
+.profile-languages li { font-size: 11px; }
+
+.stack-details { border-bottom: 1px solid var(--line); }
+.stack-details summary { display: flex; align-items: center; justify-content: space-between; min-height: 42px; color: var(--muted); font-size: 11px; cursor: pointer; list-style: none; }
+.stack-details summary::-webkit-details-marker { display: none; }
+.stack-details summary:hover { color: var(--text); }
+.stack-details summary svg { transition: transform .3s var(--ease); }
+.stack-details[open] summary svg { transform: rotate(45deg); }
+.stack-details dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 32px; margin: 4px 0 23px; }
+.stack-details dt { font-size: 12px; font-weight: 600; }
+.stack-details dd { margin: 5px 0 0; color: var(--muted); font-size: 11px; line-height: 1.7; }

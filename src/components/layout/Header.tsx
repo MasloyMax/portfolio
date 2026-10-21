@@ -1,6 +1,7 @@
-﻿import { ArrowUpRight, Moon, Sun } from 'lucide-react'
+import { ArrowUpRight, Moon, Sun } from 'lucide-react'
 import { useTheme } from '../../hooks/useTheme'
 import { Asterisk } from '../ui/Asterisk'
+import { profile } from '../../profile'
 
 export function Header({ activeSection }: { activeSection: string }) {
   const { theme, toggleTheme } = useTheme()
@@ -8,10 +9,11 @@ export function Header({ activeSection }: { activeSection: string }) {
   return (
     <header className="site-header">
       <div className="header-inner container">
-        <a className="wordmark" href="#home" aria-label="Максим Маслов — в начало">
-          <Asterisk /><span>МАКСИМ МАСЛОВ</span>
+        <a className="wordmark" href="#home" aria-label={`${profile.name} — в начало`}>
+          <Asterisk /><span>{profile.name.toLocaleUpperCase('ru-RU')}</span>
         </a>
         <nav className="navigation" aria-label="Основная навигация">
+          <a href="#about" aria-current={activeSection === 'about' ? 'location' : undefined}>Обо мне</a>
           <a href="#experience" aria-current={activeSection === 'experience' ? 'location' : undefined}>Опыт</a>
           <a href="#contact" aria-current={activeSection === 'contact' ? 'location' : undefined}>На связи <ArrowUpRight size={14} /></a>
         </nav>

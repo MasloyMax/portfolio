@@ -24,7 +24,7 @@ const experience = [
   },
 ]
 
-const email = 'gafi-gaf@mail.ru'
+const email = 'masloymax@gmail.com'
 const telegram = 'https://t.me/masloymax'
 
 test.describe('Одностраничное портфолио', () => {
@@ -39,8 +39,24 @@ test.describe('Одностраничное портфолио', () => {
     for (const job of experience.slice(1)) await check.hasCollapsedExperience(job.company)
   })
 
+  test('показывает город, факты, образование и языки вместо графики', async ({ openPage }) => {
+    const { check } = await openPage()
+    await check.hasBiography()
+  })
+
+  test('раскрывает и скрывает описание навыков', async ({ openPage }) => {
+    const { actions, check } = await openPage()
+    await check.skillDetailsAreExpanded(false)
+    await actions.toggleSkillDetails()
+    await check.skillDetailsAreExpanded(true)
+    await actions.toggleSkillDetails()
+    await check.skillDetailsAreExpanded(false)
+  })
+
   test('переходит по якорям из первого экрана, шапки и подвала', async ({ openPage }) => {
     const { actions, check } = await openPage()
+    await actions.goToAbout()
+    await check.isAtSection('about')
     await actions.goToExperience('hero')
     await check.isAtSection('experience')
     await actions.goToContacts()
@@ -134,15 +150,6 @@ test.describe('Одностраничное портфолио', () => {
     await check.hasRunningAnimations()
     await actions.preferReducedMotion()
     await check.respectsReducedMotion()
-  })
-
-  test('наклоняет звезду за курсором и возвращает её обратно', async ({ openPage, isMobile }) => {
-    test.skip(isMobile, 'Hover проверяется на десктопе; мобильные проекты эмулируют touch.')
-    const { actions, check } = await openPage()
-    await actions.hoverArtwork()
-    await check.artworkIsTilted(true)
-    await actions.leaveArtwork()
-    await check.artworkIsTilted(false)
   })
 
   test('позволяет перейти к содержимому клавишами Tab и Enter', async ({ openPage }) => {
