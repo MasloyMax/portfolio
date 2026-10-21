@@ -12,7 +12,7 @@ export const profile: PortfolioProfile = {
   about: ['От мобильных сервисов до банковских систем и инструментов разработчика.'],
   facts: [
     { label: 'В тестировании', value: 'С 2021 года' },
-    { label: 'Сейчас', value: 'Raiffeisenbank' },
+    { label: 'Сейчас', value: '----' },
   ],
   skills: [
     { name: 'Playwright', category: 'Инструменты', detail: 'Web Автотесты' },
