@@ -9,3 +9,8 @@ dist/
 playwright/report/
 playwright/test-results/
 playwright/.cache/
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+playwright_python/test-results/

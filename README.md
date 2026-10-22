@@ -31,6 +31,8 @@ npm run test:ui:report
 
 Тесты используют Playwright + TypeScript и `openPage()` с отдельными файлами локаторов, действий, проверок и спеки. Подробности — в [playwright/README.md](playwright/README.md).
 
+Рядом добавлен Python-набор: pytest + Playwright с фикстурой `open_page()`, отдельными локаторами, действиями и проверками. Установка и запуск — в [playwright_python/README.md](playwright_python/README.md). После установки зависимостей в `.venv` запуск из PowerShell: `.\.venv\Scripts\python.exe -m pytest`. Локальный сайт запускается автоматически.
+
 GitHub Actions автоматически выполняет сборку и тесты при push в `main` и в pull request. HTML-отчёт Playwright сохраняется в артефактах запуска на 7 дней.
 
 `node_modules`, `dist`, локальные инструменты в `.qa`, `.env` и отчёты тестов исключены из Git. Исходный PDF резюме не включён в проект.
