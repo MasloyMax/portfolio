@@ -40,7 +40,7 @@ export const profile: PortfolioProfile = {
       company: 'Raiffeisenbank',
       description: 'Автоматизация и ручное тестирование банковских систем.',
       highlights: [
-        'Поддержка и развивитие проекта автотестов. Проверка REST- и gRPC API, работа с GitLab CI/CD.',
+        'Поддержка и развивитие проекта автотестов (playwright+typescript). Проверка REST- и gRPC API, работа с GitLab CI/CD.',
         'Анализ логи и метрик в OpenSearch, OpenLens и Grafana. Работаю с PostgreSQL и Redis, решаю небольшие задачи на backend и frontend.',
         'Архитектурно проапгрейдил тестовый проект.',
         'Автоматизировал функционал ролевой модели',
