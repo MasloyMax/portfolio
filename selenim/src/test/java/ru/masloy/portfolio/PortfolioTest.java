@@ -40,7 +40,7 @@ class PortfolioTest {
         // Deliberately independent of src/profile.ts: incorrect content must fail a test.
         return Stream.of(
                 new Job("Raiffeisenbank", "Автоматизация и ручное тестирование банковских систем.",
-                        "Проверка REST- и gRPC API"),
+                        "проверял REST и gRPC API"),
                 new Job("Haulmont", "Автотесты для инструментов, которыми пользуются разработчики.",
                         "Разработал и внедрил систему автотестов"),
                 new Job("Сбер", "Веб-сервис «Пульс» для обучения сотрудников.",
@@ -54,7 +54,7 @@ class PortfolioTest {
     void showsProfileAndInitialExperience(PortfolioPage page) {
         assertEquals("Максим Маслов — Automation QA Engineer", page.browser.title());
         page.title.shouldHave(attribute("aria-label", "Максим Маслов"), text("Максим"), text("Маслов."));
-        page.role.shouldHave(exactText("Automation QA Engineer"));
+        page.role.shouldHave(exactText("Automation QA Engineer (TypeScript / Playwright)"));
         page.facts.shouldHave(text("Воронеж, Россия"), text("С 2021 года"));
         page.technologies.shouldHave(size(15));
         for (String technology : new String[]{"Playwright", "TypeScript", "WebdriverIO", "Java", "PostgreSQL", "GitLab CI/CD"}) {
@@ -72,7 +72,7 @@ class PortfolioTest {
     @Test
     @DisplayName("Биография, образование и языки соответствуют профилю")
     void showsEducationAndLanguages(PortfolioPage page) {
-        page.about.shouldHave(text("От мобильных сервисов до банковских систем и инструментов разработчика."));
+        page.about.shouldHave(text("В Raiffeisenbank обновил архитектуру проекта автотестов и автоматизировал тестирование ролевой модели."));
         page.education.$$("li").shouldHave(size(2));
         page.education.shouldHave(text("Инженер"), text("Воронежский государственный технический университет"),
                 text("2022"), text("Техник · радиоэлектроника"), text("ВГПГК"), text("2018"));
@@ -87,7 +87,7 @@ class PortfolioTest {
         page.toggleSkills();
         page.skillDetails.shouldHave(attribute("open"));
         page.skillDescriptions.shouldHave(size(15));
-        page.skillDescriptions.first().shouldBe(visible).shouldHave(exactText("Web Автотесты"));
+        page.skillDescriptions.first().shouldBe(visible).shouldHave(exactText("Веб-автотесты"));
         page.skillDescriptions.findBy(exactText("Автоматизация тестирования")).shouldBe(visible);
         page.awaitLayoutFitsViewport();
         page.toggleSkills();
@@ -159,7 +159,7 @@ class PortfolioTest {
     void exposesCorrectContactLinks(PortfolioPage page) {
         page.revealContact();
         page.email.shouldHave(exactText(EMAIL), attribute("href", "mailto:" + EMAIL));
-        page.telegramLinks.shouldHave(size(2));
+        page.telegramLinks.shouldHave(size(3));
         for (SelenideElement link : page.telegramLinks.asFixedIterable()) {
             link.shouldHave(attribute("href", TELEGRAM), attribute("target", "_blank"));
             String rel = link.getDomAttribute("rel");

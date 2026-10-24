@@ -1,4 +1,4 @@
-﻿.hero-main { display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 42px; padding: 53px 0 37px; }
+.hero-main { display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 42px; padding: 53px 0 37px; }
 .hero-copy { min-width: 0; }
 .hero-eyebrow { display: flex; align-items: center; gap: 9px; margin-bottom: 21px; animation: fade-in .8s both; }
 .status-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
@@ -8,12 +8,12 @@ h1 { font-size: clamp(64px, 7.1vw, 100px); line-height: .99; }
 .name-line:nth-child(2) > span { animation-delay: .13s; }
 .name-period { color: var(--muted); }
 .hero-description { max-width: 350px; margin-top: 18px; color: var(--muted); font-size: 13px; line-height: 1.8; animation: text-enter .9s .25s var(--ease) both; }
-.hero-buttons { display: flex; align-items: center; gap: 28px; margin-top: 24px; animation: text-enter .9s .35s var(--ease) both; }
+.hero-buttons { display: flex; flex-wrap: wrap; align-items: center; gap: 28px; margin-top: 24px; animation: text-enter .9s .35s var(--ease) both; }
 .hero-caption { display: flex; justify-content: space-between; gap: 20px; padding-bottom: 21px; color: var(--muted); font-size: 10px; }
 .caption-note { font-family: 'Courier New', monospace; font-size: 8px; letter-spacing: .08em; }
-.stack-line { display: flex; align-items: center; gap: 36px; padding-block: 21px; border-block: 1px solid var(--line); }
+.stack-line { display: flex; align-items: baseline; gap: 36px; padding-block: 21px; border-block: 1px solid var(--line); }
 .stack-label { color: var(--muted); font-family: 'Courier New', monospace; font-size: 9px; letter-spacing: .12em; }
-.stack-line ul { display: flex; justify-content: space-between; align-items: center; flex: 1; flex-wrap: wrap; gap: 12px 24px; margin: 0; padding: 0; list-style: none; }
+.stack-line ul { display: flex; justify-content: flex-start; align-items: center; flex: 1; flex-wrap: wrap; gap: 12px 24px; margin: 0; padding: 0; list-style: none; }
 .stack-line li { font-size: 11px; font-weight: 600; }
 .experience-section { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 60px; padding-block: 53px; }
 .section-intro h2 { margin-top: 13px; font-size: 43px; }

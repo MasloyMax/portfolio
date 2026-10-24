@@ -5,7 +5,7 @@ const experience = [
   {
     company: 'Raiffeisenbank',
     description: 'Автоматизация и ручное тестирование банковских систем.',
-    highlight: 'Проверка REST- и gRPC API',
+    highlight: 'проверял REST и gRPC API',
   },
   {
     company: 'Haulmont',

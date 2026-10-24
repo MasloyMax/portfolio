@@ -28,6 +28,7 @@ export interface Experience {
 export interface Skill {
   name: string
   category: Exclude<SkillCategory, 'Все'>
+  group: string
   detail: string
 }
 

@@ -16,6 +16,7 @@ function ExperienceItem({ job, open, onToggle, index }: { job: Experience; open:
           <span className="experience-plus"><Plus size={17} /></span>
         </button>
       </h3>
+      <p className="experience-achievement">{job.highlights[0]}</p>
       <div className="experience-panel" id={`${id}-details`} role="region" aria-labelledby={`${id}-button`} aria-hidden={!open} inert={!open}>
         <div className="experience-panel-inner">
           <div className="experience-detail">
@@ -36,8 +37,8 @@ export function ExperienceSection() {
       <div className="section-intro">
         <div className="eyebrow section-label">02 / ПРАКТИКА</div>
         <h2 id="experience-title">Опыт<span className="muted">.</span></h2>
-        <p>{profile.about[0]}</p>
-        <span className="experience-range">2021 — СЕЙЧАС</span>
+        <p>Банковские системы, инструменты разработчика и мобильные сервисы.</p>
+        <span className="experience-range">2021 — 2026</span>
       </div>
       <div className="experience-list">
         {profile.experience.map((job, index) => (

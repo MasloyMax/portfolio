@@ -29,7 +29,7 @@ export function portfolioLocators(page: Page) {
     contact,
     sections: main.locator(':scope > section'),
     title: hero.getByRole('heading', { level: 1, name: 'Максим Маслов' }),
-    role: hero.getByText('Automation QA Engineer', { exact: true }),
+    role: hero.getByText('Automation QA Engineer (TypeScript / Playwright)', { exact: true }),
     location: hero.getByText('Воронеж, Россия', { exact: true }),
     technologies: hero.getByRole('list', { name: 'Технологии', exact: true }).getByRole('listitem'),
     logo: header.getByRole('link', { name: 'Максим Маслов — в начало' }),

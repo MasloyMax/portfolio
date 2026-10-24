@@ -9,7 +9,7 @@ EXPERIENCE = [
     {
         "company": "Raiffeisenbank",
         "description": "Автоматизация и ручное тестирование банковских систем.",
-        "highlight": "Проверка REST- и gRPC API",
+        "highlight": "проверял REST и gRPC API",
     },
     {
         "company": "Haulmont",
@@ -45,7 +45,7 @@ def test_profile_and_technologies(open_page: OpenPage) -> None:
 
 def test_biography_education_and_languages(open_page: OpenPage) -> None:
     _, check = open_page()
-    check.has_biography(current_status="----")
+    check.has_biography()
 
 
 def test_skill_details(open_page: OpenPage) -> None:

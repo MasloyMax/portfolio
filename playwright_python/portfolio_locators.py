@@ -27,7 +27,7 @@ class PortfolioLocators:
         self.skill_descriptions = self.hero.locator("details dd")
         self.sections = self.main.locator(":scope > section")
         self.title = self.hero.get_by_role("heading", level=1, name="Максим Маслов")
-        self.role = self.hero.get_by_text("Automation QA Engineer", exact=True)
+        self.role = self.hero.get_by_text("Automation QA Engineer (TypeScript / Playwright)", exact=True)
         self.location = self.hero.get_by_text("Воронеж, Россия", exact=True)
         self.technologies = self.hero.get_by_role("list", name="Технологии", exact=True).get_by_role("listitem")
         self.logo = self.header.get_by_role("link", name="Максим Маслов — в начало")

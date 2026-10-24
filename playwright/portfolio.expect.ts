@@ -25,11 +25,11 @@ export class PortfolioExpect {
 
   async hasBiography() {
     await expect(this.ui.about).toBeVisible()
-    await expect(this.ui.about).toContainText('От мобильных сервисов до банковских систем и инструментов разработчика.')
+    await expect(this.ui.about).toContainText('В Raiffeisenbank обновил архитектуру проекта автотестов и автоматизировал тестирование ролевой модели.')
     await expect(this.ui.facts).toContainText('Город')
     await expect(this.ui.facts).toContainText('Воронеж, Россия')
     await expect(this.ui.facts).toContainText('С 2021 года')
-    await expect(this.ui.facts).toContainText('Raiffeisenbank')
+    await expect(this.ui.facts).not.toContainText('Сейчас')
     await expect(this.ui.education.getByRole('listitem')).toHaveCount(2)
     await expect(this.ui.education).toContainText('Инженер')
     await expect(this.ui.education).toContainText('Воронежский государственный технический университет')
@@ -45,7 +45,7 @@ export class PortfolioExpect {
     if (expanded) {
       await expect(this.ui.skillsDetails).toHaveAttribute('open', '')
       await expect(this.ui.skillDescriptions).toHaveCount(15)
-      await expect(this.ui.skillDescriptions).toContainText(['Web Автотесты', 'Автоматизация тестирования', 'Автотесты расширения в VSCode'])
+      await expect(this.ui.skillDescriptions).toContainText(['Веб-автотесты', 'Автоматизация тестирования', 'Автотесты расширения VS Code'])
       await expect(this.ui.skillDescriptions.first()).toBeVisible()
     } else {
       await expect(this.ui.skillsDetails).not.toHaveAttribute('open')

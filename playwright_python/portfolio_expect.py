@@ -25,11 +25,11 @@ class PortfolioExpect:
             expect(self.ui.experience_button(company)).to_be_visible()
         expect(self.ui.technologies).to_contain_text(technologies)
 
-    def has_biography(self, current_status: str) -> None:
+    def has_biography(self) -> None:
         expect(self.ui.about).to_be_visible()
-        expect(self.ui.about).to_contain_text("От мобильных сервисов до банковских систем и инструментов разработчика.")
-        expect(self.ui.fact_labels).to_have_text(["Город", "В тестировании", "Сейчас"])
-        expect(self.ui.fact_values).to_have_text(["Воронеж, Россия", "С 2021 года", current_status])
+        expect(self.ui.about).to_contain_text("В Raiffeisenbank обновил архитектуру проекта автотестов и автоматизировал тестирование ролевой модели.")
+        expect(self.ui.fact_labels).to_have_text(["Город", "В тестировании"])
+        expect(self.ui.fact_values).to_have_text(["Воронеж, Россия", "С 2021 года"])
         expect(self.ui.education_items).to_have_count(2)
         for detail in [
             "Инженер", "Воронежский государственный технический университет", "2022",
@@ -44,7 +44,7 @@ class PortfolioExpect:
             expect(self.ui.skills_details).to_have_attribute("open", "")
             expect(self.ui.skill_descriptions).to_have_count(15)
             expect(self.ui.skill_descriptions).to_contain_text([
-                "Web Автотесты", "Автоматизация тестирования", "Автотесты расширения в VSCode",
+                "Веб-автотесты", "Автоматизация тестирования", "Автотесты расширения VS Code",
             ])
             expect(self.ui.skill_descriptions.first).to_be_visible()
         else:
