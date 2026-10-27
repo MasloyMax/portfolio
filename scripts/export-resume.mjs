@@ -25,7 +25,7 @@ for (const job of profile.experience) {
   add('body', job.description)
   job.highlights.forEach(text => add('bullet', text))
   if (job.metrics?.length) {
-    add('body', 'Метрики — заполнить своими данными:')
+    add('body', 'Метрики:')
     job.metrics.forEach(text => add('bullet', text))
   }
   add('body', `${job.technologies.join(', ')}.`, 'Стек и инструменты:')

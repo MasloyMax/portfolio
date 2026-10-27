@@ -34,14 +34,11 @@ h1 { display: flex; flex-wrap: wrap; gap: 0 .24em; font-size: clamp(40px, 5vw, 6
 .experience-technologies strong { color: var(--text); font-weight: 600; }
 .contact-section { padding-block: 36px; border-block: 1px solid var(--line); }
 .contact-main h2 { margin-top: 10px; font-size: 34px; }
-.contact-main p { margin-top: 14px; color: var(--muted); }
 .contact-telegram { display: inline-flex; align-items: center; gap: 18px; min-height: 48px; margin-top: 12px; border-bottom: 1px solid var(--text); font-weight: 600; }
 .contact-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; margin-top: 20px; }
 .email-group { display: flex; align-items: center; gap: 10px; }
 .contact-email:hover { text-decoration: underline; text-underline-offset: 4px; }
 .copy-button { border: 0; }
-.contact-note { display: inline-flex; align-items: center; gap: 9px; color: var(--muted); font-size: 13px; }
-.contact-note svg { width: 16px; height: 16px; }
 .toast { position: fixed; z-index: 40; bottom: 24px; left: 50%; max-width: calc(100% - 32px); width: max-content; padding: 12px 20px; border: 1px solid var(--line); border-radius: 4px; background: var(--text); color: var(--background); font-size: 15px; opacity: 0; transform: translate(-50%, 12px); transition: opacity .2s, transform .3s var(--ease); pointer-events: none; }
 .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 @keyframes name-enter { from { transform: translateY(110%); } to { transform: none; } }

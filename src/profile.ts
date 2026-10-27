@@ -1,6 +1,6 @@
 import type { PortfolioProfile } from './types/portfolio'
 
-// Подтверждённый опыт. Поля в квадратных скобках автор заполнит своими метриками.
+// Профессиональные данные и результаты работы.
 export const profile: PortfolioProfile = {
   isDraft: false,
   name: 'Максим Маслов',

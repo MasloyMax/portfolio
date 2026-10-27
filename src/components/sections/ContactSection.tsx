@@ -1,7 +1,6 @@
 import { ArrowUpRight, Check, Copy } from 'lucide-react'
 import { useClipboard } from '../../hooks/useClipboard'
 import { profile } from '../../profile'
-import { Asterisk } from '../ui/Asterisk'
 
 export function ContactSection() {
   const { copy, status, message } = useClipboard()
@@ -13,7 +12,6 @@ export function ContactSection() {
         <div>
           <div className="eyebrow section-label">04 / КОНТАКТ</div>
           <h2 id="contact-title">Будем на связи<span className="muted">.</span></h2>
-          <p>Обсудим автоматизацию, ваш продукт или сложную задачу.</p>
         </div>
         <a className="contact-telegram" href={profile.contacts.telegram} target="_blank" rel="noreferrer">
           Написать в Telegram<ArrowUpRight size={20} />
@@ -26,7 +24,6 @@ export function ContactSection() {
             {status === 'success' ? <Check size={15} /> : <Copy size={15} />}
           </button>
         </div>
-        <span className="contact-note"><Asterisk />Хорошие продукты начинаются с деталей.</span>
       </div>
       <div className={`toast ${message ? 'is-visible' : ''}`} role="status" aria-live="polite">{message}</div>
     </section>

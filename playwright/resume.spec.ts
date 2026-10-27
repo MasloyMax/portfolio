@@ -30,8 +30,13 @@ test.describe('Резюме для чтения и печати', () => {
       await expect(job).toContainText(duration)
       expect(await job.getByRole('list').first().evaluate(element => parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(16)
     }
-    for (const company of ['Raiffeisenbank', 'Haulmont']) {
-      await expect(page.getByRole('article', { name: company, exact: true })).toContainText('[до] → [после]')
+    for (const [company, metrics] of [
+      ['Raiffeisenbank', ['30%', '50%', '100%']],
+      ['Haulmont', ['30%', '100%']],
+    ] as const) {
+      const job = page.getByRole('article', { name: company, exact: true })
+      await expect(job.getByText('Метрики', { exact: true })).toBeVisible()
+      for (const metric of metrics) await expect(job).toContainText(metric)
     }
   })
 

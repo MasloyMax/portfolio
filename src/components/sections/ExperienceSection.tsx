@@ -22,7 +22,7 @@ export function ExperienceSection() {
             </ul>
             {job.metrics && (
               <div className="experience-metrics">
-                <p className="metrics-label">Метрики — заполнить своими данными</p>
+                <p className="metrics-label">Метрики</p>
                 <ul>{job.metrics.map(metric => <li key={metric}>{metric}</li>)}</ul>
               </div>
             )}
