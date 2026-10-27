@@ -9,7 +9,7 @@ const experience = [
   },
   {
     company: 'Haulmont',
-    description: 'Автотесты для инструментов, которыми пользуются разработчики.',
+    description: 'Плагины для IntelliJ IDEA и VS Code — инструменты для разработчиков.',
     highlight: 'Разработал и внедрил систему автотестов',
   },
   {
@@ -34,9 +34,7 @@ test.describe('Одностраничное портфолио', () => {
       experience.map(job => job.company),
       ['Playwright', 'TypeScript', 'WebdriverIO', 'Java', 'PostgreSQL', 'GitLab CI/CD'],
     )
-    const firstJob = experience[0]
-    await check.hasExpandedExperience(firstJob.company, firstJob.description, firstJob.highlight)
-    for (const job of experience.slice(1)) await check.hasCollapsedExperience(job.company)
+    for (const job of experience) await check.hasVisibleExperience(job.company, job.description, job.highlight)
   })
 
   test('показывает город, факты, образование и языки вместо графики', async ({ openPage }) => {
@@ -67,31 +65,6 @@ test.describe('Одностраничное портфолио', () => {
     await check.isAtSection('experience')
     await actions.goToTop('logo')
     await check.isAtTop()
-  })
-
-  for (const job of experience) {
-    test(`раскрывает и сворачивает опыт: ${job.company}`, async ({ openPage }) => {
-      const { actions, check } = await openPage()
-      // Первый пункт изначально открыт; проверяем и его повторное открытие.
-      if (job.company === 'Raiffeisenbank') await actions.toggleExperience(job.company)
-      await actions.toggleExperience(job.company)
-      await check.hasExpandedExperience(job.company, job.description, job.highlight)
-      if (job.company !== 'Raiffeisenbank') await check.hasCollapsedExperience('Raiffeisenbank')
-      await actions.toggleExperience(job.company)
-      await check.hasCollapsedExperience(job.company)
-      await check.hasNoExpandedExperience()
-    })
-  }
-
-  test('управляет опытом с клавиатуры, сохраняя фокус', async ({ openPage }) => {
-    const { actions, check } = await openPage()
-    const job = experience[1]
-    await actions.toggleExperienceWithKeyboard(job.company, 'Enter')
-    await check.hasExpandedExperience(job.company, job.description, job.highlight)
-    await check.experienceHasFocus(job.company)
-    await actions.toggleExperienceWithKeyboard(job.company, 'Space')
-    await check.hasCollapsedExperience(job.company)
-    await check.experienceHasFocus(job.company)
   })
 
   test('переключает обе темы и сохраняет выбор после перезагрузки', async ({ openPage }) => {

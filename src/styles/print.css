@@ -1,0 +1,61 @@
+@page { size: A4; margin: 14mm 16mm; }
+
+@media print {
+  :root, :root[data-theme='dark'] {
+    color-scheme: light;
+    --background: #fff;
+    --surface: #fff;
+    --text: #111;
+    --muted: #444;
+    --line: #bbb;
+    color: #111;
+    background: #fff;
+  }
+  *, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; }
+  html { scroll-behavior: auto; }
+  body { min-width: 0; margin: 0; font-family: Arial, sans-serif; font-size: 10.5pt; line-height: 1.4; }
+  .container { width: 100%; max-width: none; margin-inline: 0; }
+  .site-header, .scroll-progress, .skip-link, .hero-buttons, .stack-details,
+  .contact-section, .site-footer, .profile-intro, .profile-facts { display: none !important; }
+  .will-reveal, .name-line > span, .profile-overview { opacity: 1 !important; transform: none !important; }
+  .hero { padding: 0 0 12pt; }
+  .hero-eyebrow { margin-bottom: 5pt; color: #333; font-size: 11pt; letter-spacing: 0; text-transform: none; }
+  h1 { display: flex; gap: .25em; font-size: 25pt; line-height: 1.2; letter-spacing: -.02em; }
+  .name-line { padding: 0; overflow: visible; }
+  .hero-description { max-width: none; margin-top: 8pt; font-size: 10.5pt; line-height: 1.4; }
+  .hero-contacts { display: flex; flex-wrap: wrap; gap: 3pt 14pt; margin-top: 7pt; font-size: 10pt; }
+  .hero-contacts a { text-decoration: none; }
+  .print-website { display: block; margin-top: 3pt; font-size: 10pt; }
+  .experience-section, .resume-skills, .profile-overview { padding: 10pt 0; }
+  .section-intro { display: block; margin-bottom: 8pt; break-after: avoid; }
+  .section-label, .section-intro > p { display: none; }
+  .section-intro h2 { margin: 0; font-size: 15pt; letter-spacing: 0; }
+  .experience-item { padding: 10pt 0; break-inside: avoid; page-break-inside: avoid; }
+  .experience-company { font-size: 13pt; letter-spacing: 0; }
+  .experience-role { margin-top: 3pt; font-size: 10.5pt; }
+  .experience-period { margin-top: 2pt; font-size: 10pt; }
+  .experience-description { margin-top: 6pt; }
+  .experience-results { display: block; margin-top: 5pt; padding-left: 14pt; }
+  .experience-results li { margin-top: 3pt; }
+  .experience-metrics { margin-top: 7pt; padding: 5pt 9pt; border-left: 2px solid #aaa; font-size: 10pt; }
+  .experience-metrics ul { display: block; margin-top: 3pt; padding-left: 13pt; }
+  .experience-metrics li { margin-top: 2pt; }
+  .experience-technologies { margin-top: 5pt; font-size: 10pt; }
+  .stack-groups { display: block; }
+  .stack-groups > div { margin-top: 6pt; break-inside: avoid; }
+  .stack-groups dt { font-size: 10.5pt; }
+  .stack-groups dd { margin-top: 2pt; }
+  .stack-groups ul { display: block; }
+  .stack-groups li { display: inline; font-size: 10pt; }
+  .stack-groups li:not(:last-child)::after { margin-inline: 4pt; content: '·'; }
+  .profile-education { margin: 0; }
+  .profile-overview h3 { font-size: 12pt; }
+  .profile-education ol { display: block; margin-top: 6pt; }
+  .profile-education li { display: flex; gap: 12pt; margin-top: 5pt; break-inside: avoid; }
+  .education-year, .profile-education h4, .profile-education p, .profile-languages li { font-size: 10pt; }
+  .profile-education p { margin-top: 1pt; }
+  .profile-languages { margin-top: 10pt; break-inside: avoid; }
+  .profile-languages ul { margin-top: 5pt; }
+  h2, h3, h4, .experience-heading { break-after: avoid; }
+  p, li { orphans: 2; widows: 2; }
+}

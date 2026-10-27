@@ -6,12 +6,11 @@ export function portfolioLocators(page: Page) {
   const navigation = header.getByRole('navigation', { name: 'Основная навигация' })
   const main = page.getByRole('main')
   const hero = main.getByRole('region', { name: 'Максим Маслов', exact: true })
-  const about = hero.getByRole('region', { name: 'Обо мне.', exact: true })
+  const about = main.getByRole('region', { name: 'Обо мне.', exact: true })
   const experience = main.getByRole('region', { name: 'Опыт.', exact: true })
   const contact = main.getByRole('region', { name: 'Будем на связи.', exact: true })
-  const experienceItem = (company: string) => experience.getByRole('article').filter({
-    has: page.getByRole('button', { name: company }),
-  })
+  const skills = main.getByRole('region', { name: 'Навыки.', exact: true })
+  const experienceItem = (company: string) => experience.getByRole('article', { name: company, exact: true })
 
   return {
     root: page.locator('html'),
@@ -22,16 +21,16 @@ export function portfolioLocators(page: Page) {
     education: about.getByRole('group', { name: 'Образование' }),
     languages: about.getByRole('group', { name: 'Языки' }),
     facts: about.locator('dl'),
-    skillsToggle: hero.getByText('Как использую стек', { exact: true }),
-    skillsDetails: hero.locator('details'),
-    skillDescriptions: hero.locator('details dd'),
+    skillsToggle: skills.getByText('Как использую стек', { exact: true }),
+    skillsDetails: skills.locator('details'),
+    skillDescriptions: skills.locator('details dd'),
     experience,
     contact,
     sections: main.locator(':scope > section'),
     title: hero.getByRole('heading', { level: 1, name: 'Максим Маслов' }),
     role: hero.getByText('Automation QA Engineer (TypeScript / Playwright)', { exact: true }),
     location: hero.getByText('Воронеж, Россия', { exact: true }),
-    technologies: hero.getByRole('list', { name: 'Технологии', exact: true }).getByRole('listitem'),
+    technologies: skills.getByRole('list', { name: 'Технологии', exact: true }).getByRole('listitem'),
     logo: header.getByRole('link', { name: 'Максим Маслов — в начало' }),
     aboutLink: navigation.getByRole('link', { name: 'Обо мне', exact: true }),
     experienceLink: navigation.getByRole('link', { name: 'Опыт', exact: true }),
@@ -46,9 +45,8 @@ export function portfolioLocators(page: Page) {
     backToTop: page.getByRole('contentinfo').getByRole('link', { name: 'Наверх' }),
     skipLink: page.getByRole('link', { name: 'Перейти к содержимому' }),
     experienceItems: experience.getByRole('article'),
-    expandedExperienceButtons: experience.getByRole('button', { expanded: true }),
-    experienceButton: (company: string) => experienceItem(company).getByRole('button'),
-    experiencePanel: (company: string) => experienceItem(company).getByRole('region', { includeHidden: true }),
+    experienceItem,
+    experienceHeading: (company: string) => experienceItem(company).getByRole('heading', { level: 3 }),
     experienceDescription: (company: string, description: string) => experienceItem(company).getByText(description, { exact: true }),
     // Отсутствие прежней графики и анимация появления заголовка.
     artwork: hero.locator('.hero-art'),

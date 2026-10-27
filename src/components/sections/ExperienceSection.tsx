@@ -1,48 +1,33 @@
-import { useId, useState } from 'react'
-import { Plus } from 'lucide-react'
 import { profile } from '../../profile'
-import type { Experience } from '../../types/portfolio'
-
-function ExperienceItem({ job, open, onToggle, index }: { job: Experience; open: boolean; onToggle: () => void; index: number }) {
-  const id = useId()
-
-  return (
-    <article className={`experience-item ${open ? 'is-open' : ''}`}>
-      <h3>
-        <button className="experience-toggle" aria-expanded={open} aria-controls={`${id}-details`} id={`${id}-button`} onClick={onToggle}>
-          <span className="experience-number" aria-hidden="true">0{index + 1}</span>
-          <span className="experience-position"><span className="experience-company">{job.company}</span><span className="experience-role">{job.role}</span></span>
-          <span className="experience-period">{job.period}</span>
-          <span className="experience-plus"><Plus size={17} /></span>
-        </button>
-      </h3>
-      <p className="experience-achievement">{job.highlights[0]}</p>
-      <div className="experience-panel" id={`${id}-details`} role="region" aria-labelledby={`${id}-button`} aria-hidden={!open} inert={!open}>
-        <div className="experience-panel-inner">
-          <div className="experience-detail">
-            <p>{job.description}</p>
-            <ul>{job.highlights.map(highlight => <li key={highlight}>{highlight}</li>)}</ul>
-          </div>
-        </div>
-      </div>
-    </article>
-  )
-}
 
 export function ExperienceSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
-
   return (
     <section className="experience-section container reveal" id="experience" aria-labelledby="experience-title">
       <div className="section-intro">
-        <div className="eyebrow section-label">02 / ПРАКТИКА</div>
+        <div className="eyebrow section-label">01 / ОПЫТ РАБОТЫ</div>
         <h2 id="experience-title">Опыт<span className="muted">.</span></h2>
         <p>Банковские системы, инструменты разработчика и мобильные сервисы.</p>
-        <span className="experience-range">2021 — 2026</span>
       </div>
       <div className="experience-list">
-        {profile.experience.map((job, index) => (
-          <ExperienceItem key={job.company} job={job} index={index} open={openIndex === index} onToggle={() => setOpenIndex(current => current === index ? null : index)} />
+        {profile.experience.map(job => (
+          <article className="experience-item" key={job.company} aria-label={job.company}>
+            <header className="experience-heading">
+              <h3 className="experience-company">{job.company}</h3>
+              <p className="experience-role">{job.role}</p>
+              <p className="experience-period">{job.period}<span aria-hidden="true"> · </span><strong>{job.duration}</strong></p>
+            </header>
+            <p className="experience-description">{job.description}</p>
+            <ul className="experience-results">
+              {job.highlights.map((highlight, index) => <li key={highlight}>{index === 0 ? <strong>{highlight}</strong> : highlight}</li>)}
+            </ul>
+            {job.metrics && (
+              <div className="experience-metrics">
+                <p className="metrics-label">Метрики — заполнить своими данными</p>
+                <ul>{job.metrics.map(metric => <li key={metric}>{metric}</li>)}</ul>
+              </div>
+            )}
+            <p className="experience-technologies"><strong>Стек и инструменты:</strong> {job.technologies.join(', ')}.</p>
+          </article>
         ))}
       </div>
     </section>

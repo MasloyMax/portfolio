@@ -1,3 +1,5 @@
+# pytest автоматически загружает фикстуры из conftest.py для тестов этой папки.
+# Фикстура подготавливает ресурс, отдаёт его через return/yield и при необходимости убирает за собой.
 import os
 import shutil
 import socket
@@ -17,6 +19,7 @@ from .portfolio_expect import PortfolioExpect
 from .portfolio_locators import PortfolioLocators
 from .portfolio_page import OpenPage, PortfolioPage
 
+# Путь к корню нужен для запуска Vite независимо от текущего каталога терминала.
 ROOT = Path(__file__).resolve().parents[1]
 LOCAL_PORT = 4178
 
@@ -24,11 +27,13 @@ LOCAL_PORT = 4178
 @pytest.fixture(scope="session")
 def base_url(pytestconfig: pytest.Config, tmp_path_factory: pytest.TempPathFactory) -> Iterator[str]:
     """Запускает текущий сайт; --base-url позволяет использовать готовый сервер."""
+    # session: сервер общий для прогона. При явном --base-url используем уже работающий сайт.
     configured_url = pytestconfig.getoption("base_url")
     if configured_url:
         yield configured_url.rstrip("/") + "/"
         return
 
+    # До запуска проверяем наличие Node/Vite и свободный порт, чтобы дать понятную ошибку.
     node = shutil.which("node")
     vite = ROOT / "node_modules/vite/bin/vite.js"
     if not node or not vite.is_file():
@@ -40,6 +45,7 @@ def base_url(pytestconfig: pytest.Config, tmp_path_factory: pytest.TempPathFacto
             pytest.fail(f"Порт {LOCAL_PORT} занят. Освободите его или передайте --base-url готового сайта.")
 
     url = f"http://127.0.0.1:{LOCAL_PORT}/"
+    # Вывод сервера пишем во временный файл; при проблеме запуска он попадёт в сообщение pytest.
     log_path = tmp_path_factory.mktemp("vite") / "server.log"
     with log_path.open("w", encoding="utf-8") as log:
         # Прямой запуск Node позволяет остановить именно свой процесс без дерева npm/cmd.
@@ -51,6 +57,7 @@ def base_url(pytestconfig: pytest.Config, tmp_path_factory: pytest.TempPathFacto
             creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0,
         )
         try:
+            # Ждём HTTP 200 максимум 30 секунд; запущенный процесс ещё не означает готовность сайта.
             deadline = time.monotonic() + 30
             while time.monotonic() < deadline:
                 if process.poll() is not None:
@@ -64,8 +71,10 @@ def base_url(pytestconfig: pytest.Config, tmp_path_factory: pytest.TempPathFacto
                 time.sleep(0.1)  # Только опрос запуска сервера, не ожидание UI.
             else:
                 pytest.fail(f"Vite не запустился за 30 секунд:\n{log_path.read_text(encoding='utf-8')}")
+            # Передаём URL плагину для браузерного контекста и даём выполниться тестам.
             yield url
         finally:
+            # После прогона останавливаем свой сервер, в том числе при ошибке запуска или тестов.
             if process.poll() is None:
                 process.terminate()
                 try:
@@ -77,6 +86,7 @@ def base_url(pytestconfig: pytest.Config, tmp_path_factory: pytest.TempPathFacto
 
 @pytest.fixture(scope="session", params=["desktop", "mobile", "small-mobile"])
 def device_profile(request: pytest.FixtureRequest) -> str:
+    # Параметризация повторяет зависящие от этой фикстуры тесты для каждого из трёх профилей.
     return request.param
 
 
@@ -84,9 +94,12 @@ def device_profile(request: pytest.FixtureRequest) -> str:
 def browser_context_args(
     browser_context_args: dict[str, Any], playwright: Playwright, device_profile: str,
 ) -> dict[str, Any]:
+    # Расширяем одноимённую фикстуру плагина, сохраняя её настройки (в том числе base_url).
+    # Pixel 7 задаёт мобильное поведение и touch; размер области страницы переопределяем ниже.
     device = dict(playwright.devices["Desktop Chrome" if device_profile == "desktop" else "Pixel 7"])
     sizes = {"desktop": (1440, 900), "mobile": (390, 844), "small-mobile": (320, 800)}
     width, height = sizes[device_profile]
+    # В словаре более поздние значения заменяют ранние; каждый тест стартует со светлой темы.
     return {
         **browser_context_args,
         **device,
@@ -101,23 +114,30 @@ def browser_context_args(
 @pytest.fixture
 def open_page(page: Page) -> Iterator[OpenPage]:
     """Один набор actions/check и изолированный BrowserContext для каждого теста."""
+    # page создаётся плагином в новом контексте: cookies и localStorage соседних тестов не переносятся.
+    # Это предельные ожидания операций и навигации, а не обязательные задержки перед каждым шагом.
     page.set_default_timeout(10_000)
     page.set_default_navigation_timeout(15_000)
+    # Оба слоя используют один набор локаторов и одну страницу браузера.
     ui = PortfolioLocators(page)
     portfolio = PortfolioPage(PortfolioActions(page, ui), PortfolioExpect(page, ui))
+    # Подписываемся до открытия сайта, чтобы поймать и ошибки начальной загрузки.
     errors: list[str] = []
     page.on("pageerror", lambda error: errors.append(str(error)))
 
     def on_console(message: ConsoleMessage) -> None:
+        # Обычные логи и предупреждения не считаем ошибками; собираем только console.error.
         if message.type == "error":
             errors.append(message.text)
 
     page.on("console", on_console)
 
     def open_portfolio() -> PortfolioPage:
+        # Тест сам вызывает эту функцию: переход на сайт и проверка готовности происходят здесь.
         portfolio.actions.open()
         portfolio.check.is_ready()
         return portfolio
 
+    # Отдаём именно функцию. После завершения теста проверяем накопленные ошибки JavaScript.
     yield open_portfolio
     portfolio.check.has_no_browser_errors(errors)

@@ -19,10 +19,13 @@ export interface Project {
 
 export interface Experience {
   period: string
+  duration: string
   role: string
   company: string
   description: string
   highlights: string[]
+  technologies: string[]
+  metrics?: string[]
 }
 
 export interface Skill {

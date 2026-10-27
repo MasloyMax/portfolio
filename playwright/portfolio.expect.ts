@@ -15,17 +15,17 @@ export class PortfolioExpect {
   }
 
   async hasProfile(companies: string[], technologies: string[]) {
-    await expect(this.ui.sections).toHaveCount(3)
+    await expect(this.ui.sections).toHaveCount(5)
     await expect(this.ui.role).toBeVisible()
     await expect(this.ui.location).toBeVisible()
     await expect(this.ui.experienceItems).toHaveCount(companies.length)
-    for (const company of companies) await expect(this.ui.experienceButton(company)).toBeVisible()
+    for (const company of companies) await expect(this.ui.experienceHeading(company)).toBeVisible()
     await expect(this.ui.technologies).toContainText(technologies)
   }
 
   async hasBiography() {
     await expect(this.ui.about).toBeVisible()
-    await expect(this.ui.about).toContainText('В Raiffeisenbank обновил архитектуру проекта автотестов и автоматизировал тестирование ролевой модели.')
+    await expect(this.ui.about).toContainText('Есть опыт создания тестовой модели сервиса и обучения команды тестировщиков.')
     await expect(this.ui.facts).toContainText('Город')
     await expect(this.ui.facts).toContainText('Воронеж, Россия')
     await expect(this.ui.facts).toContainText('С 2021 года')
@@ -72,27 +72,10 @@ export class PortfolioExpect {
     await expect.poll(() => this.page.evaluate(() => window.scrollY)).toBeLessThanOrEqual(1)
   }
 
-  async hasExpandedExperience(company: string, description: string, highlight: string) {
-    await expect(this.ui.experienceButton(company)).toHaveAttribute('aria-expanded', 'true')
-    await expect(this.ui.expandedExperienceButtons).toHaveCount(1)
-    await expect(this.ui.experiencePanel(company)).toBeVisible()
-    await expect(this.ui.experiencePanel(company)).toHaveAttribute('aria-hidden', 'false')
+  async hasVisibleExperience(company: string, description: string, highlight: string) {
+    await expect(this.ui.experienceHeading(company)).toBeVisible()
     await expect(this.ui.experienceDescription(company, description)).toBeVisible()
-    await expect(this.ui.experiencePanel(company)).toContainText(highlight)
-  }
-
-  async hasCollapsedExperience(company: string) {
-    await expect(this.ui.experienceButton(company)).toHaveAttribute('aria-expanded', 'false')
-    await expect(this.ui.experiencePanel(company)).toHaveAttribute('aria-hidden', 'true')
-    await expect(this.ui.experiencePanel(company)).toBeHidden()
-  }
-
-  async hasNoExpandedExperience() {
-    await expect(this.ui.expandedExperienceButtons).toHaveCount(0)
-  }
-
-  async experienceHasFocus(company: string) {
-    await expect(this.ui.experienceButton(company)).toBeFocused()
+    await expect(this.ui.experienceItem(company)).toContainText(highlight)
   }
 
   async hasTheme(theme: 'light' | 'dark') {

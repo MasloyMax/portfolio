@@ -2,9 +2,9 @@ import { profile } from '../../profile'
 
 export function MyLive() {
   return (
-    <section className="profile-overview" id="about" aria-labelledby="about-title">
+    <section className="profile-overview container" id="about" aria-labelledby="about-title">
       <div className="profile-intro">
-        <div className="eyebrow section-label">01 / ПРОФИЛЬ</div>
+        <div className="eyebrow section-label">03 / ПРОФИЛЬ</div>
         <h2 id="about-title">Обо мне<span className="muted">.</span></h2>
         {profile.about.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
         {profile.availability && <p className="profile-availability">{profile.availability}</p>}

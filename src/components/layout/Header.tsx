@@ -13,8 +13,8 @@ export function Header({ activeSection }: { activeSection: string }) {
           <Asterisk /><span>{profile.name.toLocaleUpperCase('ru-RU')}</span>
         </a>
         <nav className="navigation" aria-label="Основная навигация">
-          <a href="#about" aria-current={activeSection === 'about' ? 'location' : undefined}>Обо мне</a>
           <a href="#experience" aria-current={activeSection === 'experience' ? 'location' : undefined}>Опыт</a>
+          <a href="#about" aria-current={activeSection === 'about' ? 'location' : undefined}>Обо мне</a>
           <a href="#contact" aria-current={activeSection === 'contact' ? 'location' : undefined}>На связи <ArrowUpRight size={14} /></a>
         </nav>
         <button

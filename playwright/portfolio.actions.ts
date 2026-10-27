@@ -35,16 +35,6 @@ export class PortfolioActions {
     await (from === 'footer' ? this.ui.backToTop : this.ui.logo).click()
   }
 
-  async toggleExperience(company: string) {
-    await this.ui.experienceButton(company).click()
-  }
-
-  async toggleExperienceWithKeyboard(company: string, key: 'Enter' | 'Space') {
-    const button = this.ui.experienceButton(company)
-    await button.focus()
-    await button.press(key)
-  }
-
   async toggleTheme() {
     await this.ui.themeToggle.click()
   }
