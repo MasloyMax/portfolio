@@ -10,7 +10,7 @@ const experience = [
   {
     company: 'Haulmont',
     description: 'Плагины для IntelliJ IDEA и VS Code — инструменты для разработчиков.',
-    highlight: 'Разработал и внедрил систему автотестов',
+    highlight: 'Самостоятельно создал проект UI-автотестов для расширения VS Code',
   },
   {
     company: 'Сбер',

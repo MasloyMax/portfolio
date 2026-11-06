@@ -15,6 +15,7 @@ const add = (style, text, label) => blocks.push({ style, text, ...(label ? { lab
 add('name', profile.name)
 add('role', profile.role)
 add('contact', `${profile.location} · ${profile.contacts.email} · @masloymax`)
+if (profile.availability) add('contact', profile.availability)
 add('contact', 'masloymax.github.io/portfolio')
 add('section', 'Профессиональный профиль')
 add('body', profile.introduction)

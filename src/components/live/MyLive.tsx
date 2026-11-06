@@ -7,7 +7,6 @@ export function MyLive() {
         <div className="eyebrow section-label">03 / ПРОФИЛЬ</div>
         <h2 id="about-title">Обо мне<span className="muted">.</span></h2>
         {profile.about.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
-        {profile.availability && <p className="profile-availability">{profile.availability}</p>}
       </div>
 
       <dl className="profile-facts">

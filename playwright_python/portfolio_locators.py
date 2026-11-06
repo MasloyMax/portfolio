@@ -34,7 +34,7 @@ class PortfolioLocators:
         # :scope > section берёт только непосредственные секции main, без вложенных блоков.
         self.sections = self.main.locator(":scope > section")
         self.title = self.hero.get_by_role("heading", level=1, name="Максим Маслов")
-        self.role = self.hero.get_by_text("Automation QA Engineer (TypeScript / Playwright)", exact=True)
+        self.role = self.hero.get_by_text("Middle Automation QA Engineer (TypeScript / Playwright)", exact=True)
         self.location = self.hero.get_by_text("Воронеж, Россия", exact=True)
         self.technologies = self.skills.get_by_role("list", name="Технологии", exact=True).get_by_role("listitem")
         # Навигационные ссылки ищем внутри своей области, чтобы различать похожие ссылки на странице.

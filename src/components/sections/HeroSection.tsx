@@ -17,6 +17,7 @@ export function HeroSection() {
           <a href={profile.contacts.telegram} target="_blank" rel="noreferrer">@masloymax</a>
           <span>{profile.location}</span>
         </div>
+        {profile.availability && <p className="hero-availability">{profile.availability}</p>}
         <p className="print-website"><a href="https://masloymax.github.io/portfolio/">masloymax.github.io/portfolio</a></p>
         <div className="hero-buttons">
           {profile.contacts.resume && <a href={profile.contacts.resume} download="Maxim-Maslov-QA.pdf" className="button button-dark">Скачать резюме<Download size={17} /></a>}

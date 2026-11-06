@@ -25,6 +25,7 @@
   .hero-description { max-width: none; margin-top: 8pt; font-size: 10.5pt; line-height: 1.4; }
   .hero-contacts { display: flex; flex-wrap: wrap; gap: 3pt 14pt; margin-top: 7pt; font-size: 10pt; }
   .hero-contacts a { text-decoration: none; }
+  .hero-availability { margin-top: 3pt; font-size: 10pt; }
   .print-website { display: block; margin-top: 3pt; font-size: 10pt; }
   .experience-section, .resume-skills, .profile-overview { padding: 10pt 0; }
   .section-intro { display: block; margin-bottom: 8pt; break-after: avoid; }
