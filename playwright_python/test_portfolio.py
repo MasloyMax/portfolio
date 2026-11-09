@@ -17,7 +17,7 @@ EXPERIENCE = [
     {
         "company": "Haulmont",
         "description": "Плагины для IntelliJ IDEA и VS Code — инструменты для разработчиков.",
-        "highlight": "Самостоятельно создал проект UI-автотестов для расширения VS Code",
+        "highlight": "Писал UI-автотесты на Java с JUnit и Selenide и API-автотесты с REST Assured.",
     },
     {
         "company": "Сбер",
@@ -41,7 +41,7 @@ def test_profile_and_technologies(open_page: OpenPage) -> None:
     # Передаём ожидаемые компании и ключевые технологии, с которыми сравниваем интерфейс.
     check.has_profile(
         [job["company"] for job in EXPERIENCE],
-        ["Playwright", "TypeScript", "WebdriverIO", "Java", "PostgreSQL", "GitLab CI/CD"],
+        ["Playwright", "TypeScript", "WebdriverIO", "Java", "JUnit", "Selenide", "REST Assured", "PostgreSQL", "GitLab CI/CD"],
     )
     for job in EXPERIENCE:
         check.has_visible_experience(**job)

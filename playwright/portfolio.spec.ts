@@ -10,7 +10,7 @@ const experience = [
   {
     company: 'Haulmont',
     description: 'Плагины для IntelliJ IDEA и VS Code — инструменты для разработчиков.',
-    highlight: 'Самостоятельно создал проект UI-автотестов для расширения VS Code',
+    highlight: 'Писал UI-автотесты на Java с JUnit и Selenide и API-автотесты с REST Assured.',
   },
   {
     company: 'Сбер',
@@ -32,7 +32,7 @@ test.describe('Одностраничное портфолио', () => {
     const { check } = await openPage()
     await check.hasProfile(
       experience.map(job => job.company),
-      ['Playwright', 'TypeScript', 'WebdriverIO', 'Java', 'PostgreSQL', 'GitLab CI/CD'],
+      ['Playwright', 'TypeScript', 'WebdriverIO', 'Java', 'JUnit', 'Selenide', 'REST Assured', 'PostgreSQL', 'GitLab CI/CD'],
     )
     for (const job of experience) await check.hasVisibleExperience(job.company, job.description, job.highlight)
   })

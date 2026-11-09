@@ -53,7 +53,7 @@ class PortfolioExpect:
         # Помимо атрибута проверяем фактическую видимость содержимого, а при раскрытии — его состав.
         if expanded:
             expect(self.ui.skills_details).to_have_attribute("open", "")
-            expect(self.ui.skill_descriptions).to_have_count(15)
+            expect(self.ui.skill_descriptions).to_have_count(18)
             expect(self.ui.skill_descriptions).to_contain_text([
                 "Веб-автотесты", "Автоматизация тестирования", "Автотесты расширения VS Code",
             ])

@@ -44,7 +44,7 @@ export class PortfolioExpect {
   async skillDetailsAreExpanded(expanded: boolean) {
     if (expanded) {
       await expect(this.ui.skillsDetails).toHaveAttribute('open', '')
-      await expect(this.ui.skillDescriptions).toHaveCount(15)
+      await expect(this.ui.skillDescriptions).toHaveCount(18)
       await expect(this.ui.skillDescriptions).toContainText(['Веб-автотесты', 'Автоматизация тестирования', 'Автотесты расширения VS Code'])
       await expect(this.ui.skillDescriptions.first()).toBeVisible()
     } else {
