@@ -33,6 +33,7 @@ export interface Skill {
   category: Exclude<SkillCategory, 'Все'>
   group: string
   detail: string
+  note?: string
 }
 
 export interface PortfolioProfile {
@@ -44,9 +45,11 @@ export interface PortfolioProfile {
   availability?: string
   headline: [string, string, string]
   introduction: string
+  summary: string[]
   about: string[]
   facts: { label: string; value: string }[]
   skills: Skill[]
+  skillGroupNotes: Record<string, string>
   projects: Project[]
   experience: Experience[]
   education: { title: string; institution: string; period: string }[]

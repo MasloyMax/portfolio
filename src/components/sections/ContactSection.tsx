@@ -10,7 +10,7 @@ export function ContactSection() {
     <section className="contact-section container reveal" id="contact" aria-labelledby="contact-title">
       <div className="contact-main">
         <div>
-          <div className="eyebrow section-label">04 / КОНТАКТ</div>
+          <div className="eyebrow section-label">05 / КОНТАКТ</div>
           <h2 id="contact-title">Будем на связи<span className="muted">.</span></h2>
         </div>
         <a className="contact-telegram" href={profile.contacts.telegram} target="_blank" rel="noreferrer">

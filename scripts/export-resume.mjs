@@ -19,6 +19,7 @@ if (profile.availability) add('contact', profile.availability)
 add('contact', 'masloymax.github.io/portfolio')
 add('section', 'Профессиональный профиль')
 add('body', profile.introduction)
+profile.summary.forEach(text => add('body', text))
 add('section', 'Опыт работы')
 for (const job of profile.experience) {
   add('job', `${job.company} · ${job.period} · ${job.duration}`)
@@ -31,9 +32,21 @@ for (const job of profile.experience) {
   }
   add('body', `${job.technologies.join(', ')}.`, 'Стек и инструменты:')
 }
+if (profile.projects.length) {
+  add('section', 'Проекты')
+  for (const project of profile.projects) {
+    add('job', `${project.title} · ${project.year}`)
+    add('jobrole', project.category)
+    add('body', project.description)
+    project.details.forEach(text => add('bullet', text))
+    add('body', `${project.tags.join(', ')}.`, 'Стек и инструменты:')
+    if (project.github) add('body', project.github, 'Код:')
+  }
+}
 add('section', 'Ключевые навыки')
 for (const group of new Set(profile.skills.map(skill => skill.group))) {
-  add('skill', profile.skills.filter(skill => skill.group === group).map(skill => skill.name).join(', '), `${group}:`)
+  const skills = profile.skills.filter(skill => skill.group === group).map(skill => skill.note ? `${skill.name} (${skill.note})` : skill.name).join(', ')
+  add('skill', [skills, profile.skillGroupNotes[group]].filter(Boolean).join('. '), `${group}:`)
 }
 add('section', 'Образование')
 profile.education.forEach(item => add('body', `${item.period} · ${item.title} — ${item.institution}`))
@@ -49,7 +62,7 @@ const docx = spawnSync(python, ['scripts/write-resume-docx.py'], {
 if (docx.error) throw docx.error
 if (docx.status !== 0) throw new Error(docx.stderr || 'Не удалось создать DOCX')
 
-const server = await createServer({ server: { host: '127.0.0.1', port: 0 }, logLevel: 'error' })
+const server = await createServer({ server: { host: '127.0.0.1', port: 0, watch: null }, logLevel: 'error' })
 let browser
 try {
   await server.listen()
@@ -61,7 +74,8 @@ try {
   await page.evaluate(() => document.fonts.ready)
   const pdf = await page.pdf({ path: 'public/resume-maxim-maslov.pdf', preferCSSPageSize: true, printBackground: true, tagged: true, outline: true })
   if (!pdf.subarray(0, 5).equals(Buffer.from('%PDF-'))) throw new Error('Некорректный PDF')
-  for (const name of ['Маслов Максим — резюме ATS.pdf', 'Маслов Максим — резюме.pdf']) {
+  copyFileSync('Маслов Максим — резюме ATS.docx', 'Маслов Максим — резюме ATS — обновлённое.docx')
+  for (const name of ['Маслов Максим — резюме ATS.pdf', 'Маслов Максим — резюме.pdf', 'Маслов Максим — резюме ATS — обновлённое.pdf']) {
     copyFileSync('public/resume-maxim-maslov.pdf', name)
   }
   console.log(docx.stdout.trim())

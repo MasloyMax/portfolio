@@ -12,6 +12,7 @@ export function HeroSection() {
           ))}
         </h1>
         <p className="hero-description">{profile.introduction}</p>
+        {profile.summary.map(paragraph => <p className="hero-summary" key={paragraph}>{paragraph}</p>)}
         <div className="hero-contacts" aria-label="Контакты">
           <a href={`mailto:${profile.contacts.email}`}>{profile.contacts.email}</a>
           <a href={profile.contacts.telegram} target="_blank" rel="noreferrer">@masloymax</a>

@@ -4,6 +4,7 @@ import { ContactSection } from './components/sections/ContactSection'
 import { ExperienceSection } from './components/sections/ExperienceSection'
 import { HeroSection } from './components/sections/HeroSection'
 import { ResumeSkillsSection } from './components/sections/ResumeSkillsSection'
+import { ProjectsSection } from './components/sections/ProjectsSection'
 import { MyLive } from './components/live/MyLive'
 import { usePageScroll } from './hooks/usePageScroll'
 import { useRevealOnScroll } from './hooks/useRevealOnScroll'
@@ -20,6 +21,7 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         <HeroSection />
         <ExperienceSection />
+        <ProjectsSection />
         <ResumeSkillsSection />
         <MyLive />
         <ContactSection />

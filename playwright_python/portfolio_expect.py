@@ -22,7 +22,7 @@ class PortfolioExpect:
 
     def has_profile(self, companies: list[str], technologies: list[str]) -> None:
         # Проверяем структуру страницы и наличие каждой ожидаемой компании.
-        expect(self.ui.sections).to_have_count(5)
+        expect(self.ui.sections).to_have_count(6)
         expect(self.ui.role).to_be_visible()
         expect(self.ui.location).to_be_visible()
         expect(self.ui.experience_items).to_have_count(len(companies))
@@ -37,7 +37,7 @@ class PortfolioExpect:
         expect(self.ui.about).to_contain_text("Есть опыт создания тестовой модели сервиса и обучения команды тестировщиков.")
         # to_have_text для коллекции проверяет весь список текстов и их порядок.
         expect(self.ui.fact_labels).to_have_text(["Город", "В тестировании", "В автоматизации"])
-        expect(self.ui.fact_values).to_have_text(["Воронеж, Россия", "С 2021 года", "С 2023 года"])
+        expect(self.ui.fact_values).to_have_text(["Воронеж, Россия", "5+ лет", "3 года"])
         expect(self.ui.education_items).to_have_count(2)
         for detail in [
             "Инженер", "Воронежский государственный технический университет", "2022",
@@ -53,7 +53,7 @@ class PortfolioExpect:
         # Помимо атрибута проверяем фактическую видимость содержимого, а при раскрытии — его состав.
         if expanded:
             expect(self.ui.skills_details).to_have_attribute("open", "")
-            expect(self.ui.skill_descriptions).to_have_count(18)
+            expect(self.ui.skill_descriptions).to_have_count(48)
             expect(self.ui.skill_descriptions).to_contain_text([
                 "Веб-автотесты", "Автоматизация тестирования", "Автотесты расширения VS Code",
             ])

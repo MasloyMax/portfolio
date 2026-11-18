@@ -7,14 +7,14 @@ export function ResumeSkillsSection() {
   return (
     <section className="resume-skills container" id="skills" aria-labelledby="skills-title">
       <div className="section-intro">
-        <div className="eyebrow section-label">02 / ИНСТРУМЕНТЫ</div>
+        <div className="eyebrow section-label">03 / ИНСТРУМЕНТЫ</div>
         <h2 id="skills-title">Навыки<span className="muted">.</span></h2>
       </div>
       <dl className="stack-groups">
         {groups.map(group => (
           <div key={group}>
             <dt>{group}</dt>
-            <dd><ul aria-label="Технологии">{profile.skills.filter(skill => skill.group === group).map(skill => <li key={skill.name}>{skill.name}</li>)}</ul></dd>
+            <dd><ul aria-label="Технологии">{profile.skills.filter(skill => skill.group === group).map(skill => <li key={skill.name}>{skill.name}{skill.note && ` (${skill.note})`}</li>)}</ul>{profile.skillGroupNotes[group] && <p className="stack-group-note">{profile.skillGroupNotes[group]}</p>}</dd>
           </div>
         ))}
       </dl>

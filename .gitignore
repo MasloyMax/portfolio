@@ -14,3 +14,4 @@ __pycache__/
 .pytest_cache/
 *.py[cod]
 playwright_python/test-results/
+/hh-clicker/

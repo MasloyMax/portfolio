@@ -4,6 +4,7 @@
 .stack-groups ul { display: flex; flex-wrap: wrap; gap: 5px 10px; margin: 0; padding: 0; list-style: none; }
 .stack-groups li { font-size: 16px; }
 .stack-groups li:not(:last-child)::after { margin-left: 10px; color: var(--muted); content: '·'; }
+.stack-group-note { margin-top: 6px; color: var(--muted); font-size: 15px; }
 .stack-details { margin-top: 24px; border-block: 1px solid var(--line); }
 .stack-details summary { display: flex; align-items: center; justify-content: space-between; min-height: 48px; font-size: 15px; cursor: pointer; list-style: none; }
 .stack-details summary::-webkit-details-marker { display: none; }

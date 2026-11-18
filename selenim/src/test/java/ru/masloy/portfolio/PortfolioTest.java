@@ -61,10 +61,10 @@ class PortfolioTest {
         assertEquals("Максим Маслов — Automation QA Engineer", page.browser.title());
         page.title.shouldHave(attribute("aria-label", "Максим Маслов"), text("Максим"), text("Маслов"));
         page.role.shouldHave(exactText("Middle Automation QA Engineer (Java / TypeScript)"));
-        page.facts.shouldHave(text("Воронеж, Россия"), text("С 2021 года"));
-        // Всего ожидаем 18 технологий; отдельно убеждаемся, что ключевые из них видны пользователю.
-        page.technologies.shouldHave(size(18));
-        for (String technology : new String[]{"Playwright", "TypeScript", "WebdriverIO", "Java", "JUnit", "Selenide", "REST Assured", "PostgreSQL", "GitLab CI/CD"}) {
+        page.facts.shouldHave(text("Воронеж, Россия"), text("5+ лет"), text("3 года"));
+        // Всего ожидаем 48 технологий; отдельно убеждаемся, что ключевые из них видны пользователю.
+        page.technologies.shouldHave(size(48));
+        for (String technology : new String[]{"Playwright", "TypeScript", "WebdriverIO", "Java 16+", "JUnit 5", "Selenide", "REST Assured", "PostgreSQL", "GitLab CI/CD"}) {
             page.technologies.findBy(exactText(technology)).shouldBe(visible);
         }
         page.revealExperience();
@@ -92,7 +92,7 @@ class PortfolioTest {
         // Раскрываем блок и проверяем количество, текст и видимость описаний навыков.
         page.toggleSkills();
         page.skillDetails.shouldHave(attribute("open"));
-        page.skillDescriptions.shouldHave(size(18));
+        page.skillDescriptions.shouldHave(size(48));
         page.skillDescriptions.first().shouldBe(visible).shouldHave(exactText("Веб-автотесты"));
         page.skillDescriptions.findBy(exactText("Автоматизация тестирования")).shouldBe(visible);
         // Длинный раскрытый список не должен выходить за ширину экрана.

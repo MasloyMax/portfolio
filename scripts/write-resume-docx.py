@@ -17,6 +17,10 @@ links = {
     '@masloymax': ('telegram', 'https://t.me/masloymax'),
     'masloymax.github.io/portfolio': ('portfolio', 'https://masloymax.github.io/portfolio/'),
 }
+for block in data['blocks']:
+    for url in re.findall(r'https?://[^\s]+', block['text']):
+        if url not in links:
+            links[url] = (f'url{len(links)}', url)
 link_pattern = re.compile('|'.join(map(re.escape, links)))
 
 def run(text, bold=False):

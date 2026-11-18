@@ -4,7 +4,7 @@ export function MyLive() {
   return (
     <section className="profile-overview container" id="about" aria-labelledby="about-title">
       <div className="profile-intro">
-        <div className="eyebrow section-label">03 / ПРОФИЛЬ</div>
+        <div className="eyebrow section-label">04 / ПРОФИЛЬ</div>
         <h2 id="about-title">Обо мне<span className="muted">.</span></h2>
         {profile.about.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
       </div>

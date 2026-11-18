@@ -15,7 +15,7 @@ export class PortfolioExpect {
   }
 
   async hasProfile(companies: string[], technologies: string[]) {
-    await expect(this.ui.sections).toHaveCount(5)
+    await expect(this.ui.sections).toHaveCount(6)
     await expect(this.ui.role).toBeVisible()
     await expect(this.ui.location).toBeVisible()
     await expect(this.ui.experienceItems).toHaveCount(companies.length)
@@ -28,7 +28,8 @@ export class PortfolioExpect {
     await expect(this.ui.about).toContainText('Есть опыт создания тестовой модели сервиса и обучения команды тестировщиков.')
     await expect(this.ui.facts).toContainText('Город')
     await expect(this.ui.facts).toContainText('Воронеж, Россия')
-    await expect(this.ui.facts).toContainText('С 2021 года')
+    await expect(this.ui.facts).toContainText('5+ лет')
+    await expect(this.ui.facts).toContainText('3 года')
     await expect(this.ui.facts).not.toContainText('Сейчас')
     await expect(this.ui.education.getByRole('listitem')).toHaveCount(2)
     await expect(this.ui.education).toContainText('Инженер')
@@ -44,7 +45,7 @@ export class PortfolioExpect {
   async skillDetailsAreExpanded(expanded: boolean) {
     if (expanded) {
       await expect(this.ui.skillsDetails).toHaveAttribute('open', '')
-      await expect(this.ui.skillDescriptions).toHaveCount(18)
+      await expect(this.ui.skillDescriptions).toHaveCount(48)
       await expect(this.ui.skillDescriptions).toContainText(['Веб-автотесты', 'Автоматизация тестирования', 'Автотесты расширения VS Code'])
       await expect(this.ui.skillDescriptions.first()).toBeVisible()
     } else {
